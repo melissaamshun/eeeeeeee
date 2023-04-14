@@ -183,6 +183,7 @@ bool Person::operator==(const Person &rhs) {
   }
   return false;
 }
+}
 
 bool Person::operator!=(const Person &rhs) {
   // TODO: Complete this method!
