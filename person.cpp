@@ -153,7 +153,7 @@ void Person::set_person(string filename) {
   }
     this->f_name = fn;
     this->l_name = ln;
-    cout << this->l_name << endl;
+    //cout << this->l_name << endl;
     birthdate = new Date(bd);
 
     int finder = email_addr.find(")");
@@ -194,7 +194,7 @@ bool Person::operator!=(const Person &rhs) {
 
 void Person::print_person() {
   // Already implemented for you! Do not change!
-  std::cout << l_name << ", " << f_name << endl;
+  std::cout << this->l_name << ", " << this->f_name << endl;
   birthdate->print_date("Month D, YYYY");
   email->print();
   phone->print();
