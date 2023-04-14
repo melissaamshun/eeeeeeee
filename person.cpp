@@ -153,19 +153,20 @@ void Person::set_person(string filename) {
   }
     this->f_name = fn;
     this->l_name = ln;
+    cout << this->l_name << endl;
     birthdate = new Date(bd);
 
     int finder = email_addr.find(")");
     string email_typ = email_addr.substr(1, finder - 1);
     string addr = email_addr.substr(finder + 2);
     email = new Email(email_typ, addr);
-    cout << "DB: " << email_typ << " " << addr << endl;
     
     finder = phone_nbr.find(")");
     string phone_typ = phone_nbr.substr(1, finder - 1);
     string nbr = phone_nbr.substr(finder + 2);
     phone = new Phone(phone_typ, nbr);
-    cout << "DB: " << phone_typ << " " << nbr << endl;
+    cout << "DB: ";
+    phone->print();
 
     fin.close();
   }
