@@ -150,6 +150,7 @@ void Person::set_person(string filename) {
       }
       break;
     }
+  }
     this->f_name = fn;
     this->l_name = ln;
     birthdate = new Date(bd);
@@ -168,7 +169,7 @@ void Person::set_person(string filename) {
 
     fin.close();
   }
-}
+
 
   
   
