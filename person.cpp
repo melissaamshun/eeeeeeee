@@ -149,9 +149,6 @@ void Person::set_person(string filename) {
         phone_nbr = line;
       }
       break;
-    default:
-      cnt = 0;
-      break;
     }
     this->f_name = fn;
     this->l_name = ln;
