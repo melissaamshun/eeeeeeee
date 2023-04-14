@@ -168,6 +168,7 @@ void Person::set_person(string filename) {
 
     fin.close();
   }
+}
 
   
   
@@ -182,7 +183,6 @@ bool Person::operator==(const Person &rhs) {
     return true;
   }
   return false;
-}
 }
 
 bool Person::operator!=(const Person &rhs) {
