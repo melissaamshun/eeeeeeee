@@ -194,8 +194,8 @@ bool Person::operator!=(const Person &rhs) {
 
 void Person::print_person() {
   // Already implemented for you! Do not change!
-  cout << "DB: " + l_name << endl;
-  cout << l_name + ", " + f_name << endl;
+  std::cout << "DB: " + l_name << endl;
+  std::cout << l_name + ", " + f_name << endl;
   birthdate->print_date("Month D, YYYY");
   email->print();
   phone->print();
