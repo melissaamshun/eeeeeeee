@@ -170,37 +170,38 @@ void Person::set_person(string filename) {
   }
 
   
-  bool Person::operator==(const Person &rhs) {
-    // TODO: Complete this method!
-    // Note: you should check first name, last name and birthday between two
-    // persons refer to bool Date::operator==(const Date& rhs)
+  
+bool Person::operator==(const Person &rhs) {
+  // TODO: Complete this method!
+  // Note: you should check first name, last name and birthday between two
+  // persons refer to bool Date::operator==(const Date& rhs)
 
-    string rhs_name = rhs.get_name();
-    if ((rhs_name == this->get_name()) &&
-        (*(rhs.get_birthdate()) == *(this->birthdate))) {
-      return true;
-    }
-    return false;
+  string rhs_name = rhs.get_name();
+  if ((rhs_name == this->get_name()) &&
+      (*(rhs.get_birthdate()) == *(this->birthdate))) {
+    return true;
   }
+  return false;
+}
 
-  bool Person::operator!=(const Person &rhs) {
-    // TODO: Complete this method!
-    return !(*this == rhs);
-  }
+bool Person::operator!=(const Person &rhs) {
+  // TODO: Complete this method!
+  return !(*this == rhs);
+}
 
-  void Person::print_person() {
-    // Already implemented for you! Do not change!
-    std::cout << l_name << ", " << f_name << endl;
-    birthdate->print_date("Month D, YYYY");
-    email->print();
-    phone->print();
-  }
+void Person::print_person() {
+  // Already implemented for you! Do not change!
+  std::cout << l_name << ", " << f_name << endl;
+  birthdate->print_date("Month D, YYYY");
+  email->print();
+  phone->print();
+}
 
-  string Person::get_name() const {
-    string fullName = l_name + ", " + f_name;
-    return fullName;
-  }
+string Person::get_name() const {
+  string fullName = l_name + ", " + f_name;
+  return fullName;
+}
 
-  string Person::get_lname() { return l_name; }
+string Person::get_lname() { return l_name; }
 
-  Date *Person::get_birthdate() const { return birthdate; }
+Date *Person::get_birthdate() const { return birthdate; }
