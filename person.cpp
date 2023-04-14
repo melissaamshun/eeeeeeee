@@ -81,7 +81,7 @@ void Person::set_person(string filename) {
   // Look at person_template files as examples.
   // Phone number in files can have '-' or not.
   // TODO: Complete this method!
-  string fn, ln, bd, l4, l5;
+  //string fn, ln, bd, l4, l5;
   ifstream fin;
   fin.open(filename.c_str());
   /*
