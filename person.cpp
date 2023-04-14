@@ -1,4 +1,5 @@
 
+
 #include "person.h"
 
 Person::Person() {
@@ -83,15 +84,16 @@ void Person::set_person(string filename) {
   string fn, ln, bd, l4, l5;
   ifstream fin;
   fin.open(filename.c_str());
+  /*
   std::getline(fin, fn);
   std::getline(fin, ln);
   std::getline(fin, bd);
   std::getline(fin, l4);
   std::getline(fin, l5);
   this->f_name = fn;
-  //cout << "DB: "<< f_name << endl;
+  // cout << "DB: "<< f_name << endl;
   this->l_name = ln;
-  //cout << "DB: "<< l_name << endl;
+  // cout << "DB: "<< l_name << endl;
   birthdate = new Date(bd);
   // from https://www.w3schools.blog/c-check-if-string-contains-substring
 
@@ -99,10 +101,27 @@ void Person::set_person(string filename) {
   if (l4.find('@') != string::npos) {
     email_addr = l4;
     phone_nbr = l5;
-    /*
-    string line;
+
+  } else {
+    email_addr = l5;
+    phone_nbr = l4;
+
+  }
+
+  int finder = email_addr.find(")");
+  string email_typ = email_addr.substr(1, finder - 1);
+  string addr = email_addr.substr(finder + 2);
+  finder = phone_nbr.find(")");
+  string phone_typ = phone_nbr.substr(1, finder - 1);
+  string nbr = phone_nbr.substr(finder + 2);
+  // cout << "DB: "<< phone_nbr;
+  email = new Email(email_typ, addr);
+  phone = new Phone(phone_typ, nbr);
+*/
+
+  string line;
   int cnt = 0;
-  string fn, ln, bd, l4, l5, email, phone;
+  string fn, ln, bd, email_addr, phone_nbr;
 
   while (getline(fin, line)) {
     cnt++;
@@ -118,94 +137,69 @@ void Person::set_person(string filename) {
       break;
     case 4:
       if (line.find("@") != string::npos) {
-        email = line;
+        email_addr = line;
       } else {
-        phone = line;
+        phone_nbr = line;
       }
       break;
     case 5:
       if (line.find("@") != string::npos) {
-        email = line;
+        email_addr = line;
       } else {
-        phone = line;
+        phone_nbr = line;
       }
       break;
     default:
       cnt = 0;
       break;
     }
-    */
-    
-  } 
-  else {
-    email_addr = l5;
-    phone_nbr = l4;
-    /*
-    int finder = l5.find(")");
-    string email_typ = l5.substr(1, finder - 1);
-    string addr = l5.substr(finder + 2);
-    finder = l4.find(")");
-    string phone_typ = l4.substr(1, finder - 1);
-    string nbr = l4.substr(finder + 2);
-    //cout << "DB: "<< phone_nbr;
+    this->f_name = fn;
+    this->l_name = ln;
+    birthdate = new Date(bd);
+
+    int finder = email_addr.find(")");
+    string email_typ = email_addr.substr(1, finder - 1);
+    string addr = email_addr.substr(finder + 2);
+    finder = phone_nbr.find(")");
+    string phone_typ = phone_nbr.substr(1, finder - 1);
+    string nbr = phone_nbr.substr(finder + 2);
     email = new Email(email_typ, addr);
     phone = new Phone(phone_typ, nbr);
-    */
+
+    fin.close();
   }
-  
-  int finder = email_addr.find(")");
-  string email_typ = email_addr.substr(1, finder - 1);
-  string addr = email_addr.substr(finder + 2);
-  finder = phone_nbr.find(")");
-  string phone_typ = phone_nbr.substr(1, finder - 1);
-  string nbr = phone_nbr.substr(finder + 2);
-  //cout << "DB: "<< phone_nbr;
-  email = new Email(email_typ, addr);
-  phone = new Phone(phone_typ, nbr);
-  
 
-  /*int finder = email_addr.find(")");
-  string email_typ = email_addr.substr(1, finder - 1);
-  string addr = email_addr.substr(finder + 2);
-  finder = phone_nbr.find(")");
-  string phone_typ = phone_nbr.substr(1, finder - 1);
-  string nbr = phone_nbr.substr(finder + 2);*/
-  
-  fin.close();
-}
+  bool Person::operator==(const Person &rhs) {
+    // TODO: Complete this method!
+    // Note: you should check first name, last name and birthday between two
+    // persons refer to bool Date::operator==(const Date& rhs)
 
-bool Person::operator==(const Person &rhs) {
-  // TODO: Complete this method!
-  // Note: you should check first name, last name and birthday between two
-  // persons refer to bool Date::operator==(const Date& rhs)
-
-  string rhs_name = rhs.get_name();
-  if ((rhs_name == this->get_name()) &&
-      (*(rhs.get_birthdate()) == *(this->birthdate))) {
-    return true;
+    string rhs_name = rhs.get_name();
+    if ((rhs_name == this->get_name()) &&
+        (*(rhs.get_birthdate()) == *(this->birthdate))) {
+      return true;
+    }
+    return false;
   }
-  return false;
-}
 
-bool Person::operator!=(const Person &rhs) {
-  // TODO: Complete this method!
-  return !(*this == rhs);
-}
+  bool Person::operator!=(const Person &rhs) {
+    // TODO: Complete this method!
+    return !(*this == rhs);
+  }
 
-void Person::print_person() {
-  // Already implemented for you! Do not change!
-  std::cout << l_name << ", " << f_name << endl;
-  birthdate->print_date("Month D, YYYY");
-  email->print();
-  phone->print();
-}
+  void Person::print_person() {
+    // Already implemented for you! Do not change!
+    std::cout << l_name << ", " << f_name << endl;
+    birthdate->print_date("Month D, YYYY");
+    email->print();
+    phone->print();
+  }
 
-string Person::get_name() const {
-  string fullName = l_name + ", " + f_name;
-  return fullName;
-}
+  string Person::get_name() const {
+    string fullName = l_name + ", " + f_name;
+    return fullName;
+  }
 
-string Person::get_lname() { return l_name; }
+  string Person::get_lname() { return l_name; }
 
-Date *Person::get_birthdate() const { return birthdate; }
-
+  Date *Person::get_birthdate() const { return birthdate; }
