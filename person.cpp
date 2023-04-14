@@ -169,6 +169,7 @@ void Person::set_person(string filename) {
     fin.close();
   }
 
+  
   bool Person::operator==(const Person &rhs) {
     // TODO: Complete this method!
     // Note: you should check first name, last name and birthday between two
