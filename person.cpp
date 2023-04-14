@@ -194,7 +194,7 @@ bool Person::operator!=(const Person &rhs) {
 
 void Person::print_person() {
   // Already implemented for you! Do not change!
-  std::cout << "DB: " + l_name << endl;
+  std::cout << l_name << "hihi" << l_name << endl;
   std::cout << get_name() << endl;
   //std::cout << l_name + ", " + f_name << endl;
   birthdate->print_date("Month D, YYYY");
